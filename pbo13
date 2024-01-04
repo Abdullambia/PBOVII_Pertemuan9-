@@ -1,0 +1,72 @@
+class Pendidikan {
+    protected String nama;
+    protected String lokasi;
+
+    public Pendidikan(String nama, String lokasi) {
+        this.nama = nama;
+        this.lokasi = lokasi;
+    }
+
+    public void tampilkanInfo() {
+        System.out.println("Nama: " + nama);
+        System.out.println("Lokasi: " + lokasi);
+    }
+}
+
+class MataPel extends Pendidikan {
+    private String kode;
+    private int sks;
+
+    public MataPel(String nama, String lokasi, String kode, int sks) {
+        super(nama, lokasi);
+        this.kode = kode;
+        this.sks = sks;
+    }
+
+    public String getNama() {
+        return nama;
+    }
+
+    public String getLokasi() {
+        return lokasi;
+    }
+}
+
+class Guru extends Pendidikan {
+    public Guru(String nama, String lokasi) {
+        super(nama, lokasi);
+    }
+
+    public void mengajar() {
+        System.out.println(nama + " sedang mengajar.");
+    }
+}
+
+class MataPelBimbel extends MataPel {
+    private double biaya;
+
+    public MataPelBimbel(String nama, String lokasi, String kode, int sks, double biaya) {
+        super(nama, lokasi, kode, sks);
+        this.biaya = biaya;
+    }
+
+    @Override
+    public void tampilkanInfo() {
+        super.tampilkanInfo();
+        System.out.println("Biaya: " + biaya);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        MataPel matapel = new MataPel("Matematika", "Gedung A", "M101", 3);
+        matapel.tampilkanInfo();
+
+
+        Guru guru = new Guru("Budi", "Ruangan 301");
+        guru.mengajar();
+
+        MataPelBimbel bimbel = new MataPelBimbel("Fisika", "Gedung B", "F201", 4, 150000.0);
+        bimbel.tampilkanInfo();
+    }
+}
